@@ -24,7 +24,20 @@ def mask_account_card(number_card_or_account: str) -> str:
         disguise_card_or_account += card_number
     return name_type + disguise_card_or_account
 
+# "2024-03-11T02:26:18.671407" выход
+# "ДД.ММ.ГГГГ"/"11.03.2024" выход
+
+
+def get_date(client_date: str) -> str:
+    """Принимает на вход дату и форматирует"""
+    date_format = ""
+    for item in client_date:
+        date_format = client_date[8:10] + "." + client_date[5:7] + "." + client_date[:4]
+    return date_format
+
 
 if __name__ == "__main__":
-    total_account = mask_account_card("Счет 35383033474447895560")
-    print(total_account)
+    personal_information = mask_account_card("Счет 35383033474447895560")
+    print(personal_information)
+    personal_date = get_date("2024-03-11T02:26:18.671407")
+    print(personal_date)
