@@ -56,3 +56,5 @@ result = filter_by_state(operations, 'CANCELED')
 ### Запуск тестов
 ```bash
 pytest
+
+
