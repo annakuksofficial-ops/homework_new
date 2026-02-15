@@ -5,6 +5,10 @@
 def get_mask_card_number(card_number: int) -> str:
     """Функция маскировки номера банковской карты"""
     card_str = str(card_number)
+
+    if len(card_str) < 16:
+        raise ValueError("Номер карты слишком короткий")
+
     card_code = ""
     for i in card_str[7:14]:
         card_code += "*"
@@ -23,6 +27,10 @@ print(total_card)
 def get_mask_account(account_number: int) -> str:
     """Функция маскировки номера банковского счета"""
     account_str = str(account_number)
+
+    if len(account_str) < 4:
+        raise ValueError("Номер счета слишком короткий")
+
     return f"** {account_str[-4:]}"
 
 
