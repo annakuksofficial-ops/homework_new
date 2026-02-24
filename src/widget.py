@@ -39,10 +39,3 @@ def get_date(client_date: str) -> str:
     for item in client_date:
         date_format = client_date[8:10] + "." + client_date[5:7] + "." + client_date[:4]
     return date_format
-
-
-if __name__ == "__main__":
-    personal_information = mask_account_card("Счет 35383033474447895560")
-    print(personal_information)
-    personal_date = get_date("2024-03-11T02:26:18.671407")
-    print(personal_date)
