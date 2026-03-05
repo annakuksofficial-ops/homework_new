@@ -1,5 +1,6 @@
+from typing import Any, Dict, List
+
 import pytest
-from typing import List, Dict, Any
 
 
 @pytest.fixture
@@ -16,6 +17,7 @@ def sample_card_data() -> List[Dict[str, Any]]:
 def empty_list() -> List:
     """Фикстура с пустым списком"""
     return []
+
 
 @pytest.fixture
 def sample_transactions() -> List[Dict[str, Any]]:
