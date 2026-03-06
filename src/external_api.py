@@ -28,7 +28,7 @@ def convert_currency(transaction):
 
         return 0.0
 
-    except:
+    except (KeyError, ValueError):
         return 0.0
 
 
@@ -59,5 +59,5 @@ def convert_to_rub(amount, currency):
 
         return float(result)
 
-    except:
+    except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
         return 0.0

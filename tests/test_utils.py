@@ -24,7 +24,7 @@ def test_load_transactions_file_not_found():
 def test_load_transactions_empty_file():
     """Тест: пустой файл"""
     with open("empty.json", "w") as f:
-        pass
+        f.write("")
 
     result = load_transactions("empty.json")
     assert result == []
