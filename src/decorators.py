@@ -22,8 +22,8 @@ def log(filename=None):
                 result = func(*args, **kwargs)
                 message = f"{func.__name__} ok"
                 if filename:
-                    with open(filename, 'a', encoding='utf-8') as f:
-                        f.write(message + '\n')
+                    with open(filename, "a", encoding="utf-8") as f:
+                        f.write(message + "\n")
                 else:
                     print(message)
                 return result
@@ -31,10 +31,12 @@ def log(filename=None):
             except Exception as error:
                 message = f"{func.__name__} error: {type(error).__name__}. Inputs: {args}, {kwargs}"
                 if filename:
-                    with open(filename, 'a', encoding='utf-8') as f:
-                        f.write(message + '\n')
+                    with open(filename, "a", encoding="utf-8") as f:
+                        f.write(message + "\n")
                 else:
                     print(message)
                 raise
+
         return wrapper
+
     return decorator
