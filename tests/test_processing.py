@@ -56,7 +56,8 @@ def test_filter_by_state_with_none_values() -> None:
     data = [
         {"id": 1, "state": None, "date": "2023-01-01"},
         {"id": 2, "state": "EXECUTED", "date": "2023-01-02"},
-        {"id": 3, "state": "CANCELED", "date": "2023-01-03"}]
+        {"id": 3, "state": "CANCELED", "date": "2023-01-03"},
+    ]
     result = filter_by_state(data, "EXECUTED")
     assert len(result) == 1
     assert result[0]["id"] == 2
@@ -67,7 +68,8 @@ def test_filter_by_state_missing_state_key() -> None:
     data = [
         {"id": 1, "date": "2023-01-01"},
         {"id": 2, "state": "EXECUTED", "date": "2023-01-02"},
-        {"id": 3, "date": "2023-01-03"}]
+        {"id": 3, "date": "2023-01-03"},
+    ]
     result = filter_by_state(data, "EXECUTED")
     assert len(result) == 1
     assert result[0]["id"] == 2
@@ -93,10 +95,7 @@ def test_filter_by_state_with_different_state_values() -> None:
 
 def test_sort_by_date_with_same_dates() -> None:
     """Тест сортировки когда даты одинаковые"""
-    data = [
-        {"id": 1, "date": "2023-01-01"},
-        {"id": 2, "date": "2023-01-01"},
-        {"id": 3, "date": "2023-01-01"}]
+    data = [{"id": 1, "date": "2023-01-01"}, {"id": 2, "date": "2023-01-01"}, {"id": 3, "date": "2023-01-01"}]
     result = sort_by_date(data, reverse=True)
     assert len(result) == 3
     ids = [item["id"] for item in result]
@@ -112,7 +111,8 @@ def test_sort_by_date_with_missing_dates() -> None:
         {"id": 2},
         {"id": 3, "date": "2023-01-01"},
         {"id": 4},
-        {"id": 5, "date": "2023-01-02"}]
+        {"id": 5, "date": "2023-01-02"},
+    ]
     result = sort_by_date(data, reverse=False)
     assert result[0]["id"] in [2, 4]
     assert result[1]["id"] in [2, 4]
@@ -127,15 +127,13 @@ def test_sort_by_date_with_invalid_date_format() -> None:
         {"id": 1, "date": "2023-01-01"},
         {"id": 2, "date": "неправильная дата"},
         {"id": 3, "date": "2023/01/02"},
-        {"id": 4, "date": "2023-01-03"},]
+        {"id": 4, "date": "2023-01-03"},
+    ]
     result = sort_by_date(data)
     assert len(result) == 4
 
 
-@pytest.mark.parametrize("state, expected_count", [
-    ("EXECUTED", 2),
-    ("CANCELED", 1),
-    ("PENDING", 0)])
+@pytest.mark.parametrize("state, expected_count", [("EXECUTED", 2), ("CANCELED", 1), ("PENDING", 0)])
 def test_filter_by_state_parametrized(sample_card_data: List[Dict[str, Any]], state: str, expected_count: int) -> None:
     """Параметризованный тест фильтрации"""
     result = filter_by_state(sample_card_data, state)
@@ -143,10 +141,9 @@ def test_filter_by_state_parametrized(sample_card_data: List[Dict[str, Any]], st
 
 
 @pytest.mark.parametrize("reverse, first_id, last_id", [(True, 41428829, 939719570), (False, 939719570, 41428829)])
-def test_sort_by_date_parametrized(sample_card_data: List[Dict[str, Any]],
-                                   reverse: bool,
-                                   first_id: int,
-                                   last_id: int) -> None:
+def test_sort_by_date_parametrized(
+    sample_card_data: List[Dict[str, Any]], reverse: bool, first_id: int, last_id: int
+) -> None:
     """Параметризованный тест сортировки"""
     result = sort_by_date(sample_card_data, reverse=reverse)
     assert result[0]["id"] == first_id
@@ -158,7 +155,8 @@ def test_filter_by_state_with_complex_data() -> None:
     data = [
         {"id": 1, "state": "EXECUTED", "amount": 100},
         {"id": 2, "state": "CANCELED", "amount": 200, "comment": "test"},
-        {"id": 3, "state": "EXECUTED", "amount": 300, "tags": ["a", "b"]}]
+        {"id": 3, "state": "EXECUTED", "amount": 300, "tags": ["a", "b"]},
+    ]
     result = filter_by_state(data, "EXECUTED")
     assert len(result) == 2
     assert result[0]["id"] == 1

@@ -23,42 +23,10 @@ def empty_list() -> List:
 def sample_transactions() -> List[Dict[str, Any]]:
     """Фикстура с тестовыми транзакциями для генераторов"""
     return [
-        {
-            "id": 939719570,
-            "description": "Перевод организации",
-            "operationAmount": {
-                "currency": {
-                    "code": "USD"
-                }
-            }
-        },
-        {
-            "id": 142264268,
-            "description": "Перевод со счета на счет",
-            "operationAmount": {
-                "currency": {
-                    "code": "EUR"
-                }
-            }
-        },
-        {
-            "id": 873106923,
-            "description": "Перевод с карты на карту",
-            "operationAmount": {
-                "currency": {
-                    "code": "USD"
-                }
-            }
-        },
-        {
-            "id": 214024827,
-            "description": "Перевод с карты на карту",
-            "operationAmount": {
-                "currency": {
-                    "code": "RUB"
-                }
-            }
-        }
+        {"id": 939719570, "description": "Перевод организации", "operationAmount": {"currency": {"code": "USD"}}},
+        {"id": 142264268, "description": "Перевод со счета на счет", "operationAmount": {"currency": {"code": "EUR"}}},
+        {"id": 873106923, "description": "Перевод с карты на карту", "operationAmount": {"currency": {"code": "USD"}}},
+        {"id": 214024827, "description": "Перевод с карты на карту", "operationAmount": {"currency": {"code": "RUB"}}},
     ]
 
 

@@ -5,53 +5,24 @@ import pytest
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 transactions: List[Dict[str, Any]] = [
-    {
-        "id": 939719570,
-        "description": "Перевод организации",
-        "operationAmount": {
-            "currency": {
-                "code": "USD"
-            }
-        }
-    },
-    {
-        "id": 142264268,
-        "description": "Перевод со счета на счет",
-        "operationAmount": {
-            "currency": {
-                "code": "EUR"
-            }
-        }
-    },
-    {
-        "id": 873106923,
-        "description": "Перевод с карты на карту",
-        "operationAmount": {
-            "currency": {
-                "code": "USD"
-            }
-        }
-    },
-    {
-        "id": 214024827,
-        "description": "Перевод с карты на карту",
-        "operationAmount": {
-            "currency": {
-                "code": "RUB"
-            }
-        }
-    }
+    {"id": 939719570, "description": "Перевод организации", "operationAmount": {"currency": {"code": "USD"}}},
+    {"id": 142264268, "description": "Перевод со счета на счет", "operationAmount": {"currency": {"code": "EUR"}}},
+    {"id": 873106923, "description": "Перевод с карты на карту", "operationAmount": {"currency": {"code": "USD"}}},
+    {"id": 214024827, "description": "Перевод с карты на карту", "operationAmount": {"currency": {"code": "RUB"}}},
 ]
 
 empty_list: List = []
 
 
-@pytest.mark.parametrize("currency, expected_count, expected_ids", [
-    ("USD", 2, [939719570, 873106923]),
-    ("EUR", 1, [142264268]),
-    ("RUB", 1, [214024827]),
-    ("GBP", 0, []),
-])
+@pytest.mark.parametrize(
+    "currency, expected_count, expected_ids",
+    [
+        ("USD", 2, [939719570, 873106923]),
+        ("EUR", 1, [142264268]),
+        ("RUB", 1, [214024827]),
+        ("GBP", 0, []),
+    ],
+)
 def test_filter_by_currency_parametrized(currency: str, expected_count: int, expected_ids: List[int]) -> None:
     """Тест фильтрации по разным валютам"""
     result = list(filter_by_currency(transactions, currency))
@@ -83,7 +54,7 @@ def test_transaction_descriptions_normal() -> None:
         "Перевод организации",
         "Перевод со счета на счет",
         "Перевод с карты на карту",
-        "Перевод с карты на карту"
+        "Перевод с карты на карту",
     ]
 
     assert result == expected
@@ -120,11 +91,14 @@ def test_transaction_descriptions_empty_description() -> None:
     assert result == ["Описание 2", "Описание 4"]
 
 
-@pytest.mark.parametrize("test_list, expected", [
-    ([], []),
-    ([{"description": "Тест"}], ["Тест"]),
-    ([{"description": "A"}, {"description": "B"}], ["A", "B"]),
-])
+@pytest.mark.parametrize(
+    "test_list, expected",
+    [
+        ([], []),
+        ([{"description": "Тест"}], ["Тест"]),
+        ([{"description": "A"}, {"description": "B"}], ["A", "B"]),
+    ],
+)
 def test_transaction_descriptions_parametrized(test_list: List[Dict[str, Any]], expected: List[str]) -> None:
     """Тест описаний с разными данными"""
     result = list(transaction_descriptions(test_list))
@@ -140,7 +114,7 @@ def test_card_number_generator_small() -> None:
         "0000 0000 0000 0002",
         "0000 0000 0000 0003",
         "0000 0000 0000 0004",
-        "0000 0000 0000 0005"
+        "0000 0000 0000 0005",
     ]
 
     assert result == expected
