@@ -61,3 +61,5 @@ def convert_to_rub(amount, currency):
 
     except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
         return 0.0
+    except Exception:
+        return 0.0
