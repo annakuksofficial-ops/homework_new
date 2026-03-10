@@ -7,7 +7,12 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = [
+dependencies = [ "pandas>=2.0.0",
+    "openpyxl>=3.1.0",
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0"
 ]
 
 
