@@ -3,7 +3,7 @@ from unittest.mock import patch
 from src.file_readers import read_csv_file, read_excel_file
 
 
-@patch('builtins.open')
+@patch("builtins.open")
 def test_read_csv_file_not_found(mock_open):
     """Тест: CSV файл не найден"""
     mock_open.side_effect = FileNotFoundError()
@@ -11,12 +11,12 @@ def test_read_csv_file_not_found(mock_open):
     assert result == []
 
 
-@patch('pandas.read_excel')
+@patch("pandas.read_excel")
 def test_read_excel_file_works(mock_read_excel):
     """Тест: чтение Excel файла"""
 
     class FakeDataFrame:
-        def to_dict(self, orient='records'):
+        def to_dict(self, orient="records"):
             return [
                 {"id": 1, "name": "Иван", "amount": 100},
                 {"id": 2, "name": "Мария", "amount": 200},
@@ -33,7 +33,7 @@ def test_read_excel_file_works(mock_read_excel):
     assert result[1]["name"] == "Мария"
 
 
-@patch('pandas.read_excel')
+@patch("pandas.read_excel")
 def test_read_excel_file_not_found(mock_read_excel):
     """Тест: Excel файл не найден"""
     mock_read_excel.side_effect = FileNotFoundError()
@@ -42,7 +42,7 @@ def test_read_excel_file_not_found(mock_read_excel):
     assert result == []
 
 
-@patch('pandas.read_excel')
+@patch("pandas.read_excel")
 def test_read_excel_file_error(mock_read_excel):
     """Тест: ошибка при чтении Excel"""
     mock_read_excel.side_effect = Exception("Ошибка чтения")

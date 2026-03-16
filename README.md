@@ -135,6 +135,15 @@ pip install black
 pip install isort
 pip install mypy
 
+## Новые возможности
+
+### Поиск по описанию
+Искать транзакции по слову в описании:
+from src.search import filter_by_description
+
+# Найдет все переводы
+result = filter_by_description(transactions, "перевод")
+
 ## Тестирование
 
 ### Запуск тестов
